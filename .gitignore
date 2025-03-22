@@ -1,0 +1,28 @@
+# Ignore compiled executables
+/bin/
+*.out
+*.exe
+
+# Ignore build artifacts and intermediate files
+/build/
+/lib/
+/.cache/
+*.o
+*.obj
+*.elf
+*.a
+*.so
+*.dll
+
+# Ignore editor and IDE specific files
+*.swp
+*~
+.vscode/
+.idea/
+*.code-workspace
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# END OF AUTO FILLED LINES
