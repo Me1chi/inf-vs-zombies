@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include <stdio.h>
+#include "buttons.h"
 #include "game.h"
 
 int main(void) {
@@ -7,6 +8,20 @@ int main(void) {
     InitWindow(SCREENWIDTH, SCREENHEIGHT, "INF vs Zombies");
 
     SetTargetFPS(60);
+
+    Vector2 button_size = {
+        SCREENWIDTH/2,
+        SCREENHEIGHT/2,
+    };
+
+    Button my_button = {
+        (Vector2) {SCREENWIDTH/2 - button_size.x/2, THEGAMEBELOWTHAT},
+        button_size,
+        GRAY,
+        "Oi gatinha",
+        BLUE,
+        true
+    };
 
     char map[3][4] = {
         {'G', 'G', 'G', 'G'},
@@ -46,8 +61,8 @@ int main(void) {
         // Drawing space
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
-        DrawText("All working by now", SCREENWIDTH/2, SCREENHEIGHT/2, 20, BLUE);
+        ClearBackground(DARKGRAY);
+        draw_button(my_button, true);
 
         EndDrawing();
 

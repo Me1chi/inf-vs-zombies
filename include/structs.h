@@ -1,5 +1,6 @@
 #pragma once
-#include <raylib.h>
+#include "raylib.h"
+#include <stdbool.h>
 
 typedef enum {
     grass,
@@ -29,10 +30,19 @@ typedef enum {
 
 typedef struct {
 
-    char* name; //Each plant will have a char associated. It's first letter. So it needs to be well chosen
+    char name[50]; //Each plant will have a char associated. It's first letter. So it needs to be well chosen
     Vector2 position;
     int life_points;
     FireLoadDelay rate;
     PlantDamageEffect effects;
 
 } Plant;
+
+typedef struct {
+    Vector2 position;
+    Vector2 size;
+    Color color;
+    char text[50];
+    Color text_color;
+    bool clickable;
+} Button;
