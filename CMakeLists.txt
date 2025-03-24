@@ -33,8 +33,10 @@ add_executable(inf-vs-zombies
     src/plants.c
     src/zombies.c
     src/map.c
-    src/bridge.c
     src/buttons.c
+    src/plantsbar.c
+    src/table.c
+    src/clock.c
 )
 
 target_link_libraries(inf-vs-zombies PRIVATE raylib)

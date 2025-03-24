@@ -4,4 +4,10 @@
 
 void draw_centralized_text(Button button);
 
-int draw_button(Button button, bool clickable);
+int button_logic(Button button);
+
+void button_draw(Button button, Color color);
+
+void button_draw_texture(Button button);
+
+Rectangle get_button_rect(Button button);
