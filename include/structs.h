@@ -31,21 +31,22 @@ typedef struct {
     int life_points;
     int cost;
     FireLoadDelay rate;
+    float time_accum; // Stores the shooting time
     PlantDamageEffect effects;
     Texture2D texture;
 
 } Plant;
+typedef struct Button Button;
 
-typedef struct {
+struct Button {
     Vector2 position;
     Vector2 size;
     Texture2D texture;
     Color filter;
     char text[50];
     Color text_color;
-    bool clickable;
-
-} Button;
+    Button* inside_button;
+};
 
 typedef struct {
     Texture2D textures[HOWMANYTEXTURES];
@@ -73,10 +74,12 @@ typedef struct {
     int direction;
     PlantDamageEffect effect;
     Color filter;
+    float rotation;
 
 } Projectile;
 
 typedef struct {
     Projectile *array;
     int counter;
+
 } ProjectileArray;

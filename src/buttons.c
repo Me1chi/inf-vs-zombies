@@ -11,9 +11,9 @@ Rectangle get_button_rect(Button button) {
     };
 }
 
-void draw_centralized_text(Button button) {
+void draw_centralized_text(Button button, float text_scale) {
 
-    float font_size = button.size.y/BUTTONLENGTHOVERFONT;
+    float font_size = button.size.y * text_scale;
 
     Vector2 text_size = MeasureTextEx(GetFontDefault(), button.text, font_size, 3);
 
@@ -24,20 +24,7 @@ void draw_centralized_text(Button button) {
 
 }
 
-int button_logic(Button button) {
-    Rectangle button_rec = get_button_rect(button);
-
-    int click = 0;
-    Vector2 mouse_pointer = GetMousePosition();
-
-    if (CheckCollisionPointRec(mouse_pointer, button_rec) && button.clickable && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-        click = 1;
-    }
-
-    return click;
-}
-
-void button_draw(Button button, Color color) {
+void button_draw(Button button, Color color, float text_scale) {
 
     Rectangle button_rec = {
         button.position.x,
@@ -48,14 +35,7 @@ void button_draw(Button button, Color color) {
 
     float delta = SCREENWIDTH/BUTTONLINETHICKNESSDIV;
 
-    bool hovering = false;
-    Vector2 mouse_pointer = GetMousePosition();
-
     //button highlight and click
-    if (CheckCollisionPointRec(mouse_pointer, button_rec) && button.clickable) {
-        hovering = true;
-    }
-
     DrawRectangleRounded(button_rec, STDBUTTONCURVE, 10, BLACK);
 
     button_rec.x += delta;
@@ -66,18 +46,10 @@ void button_draw(Button button, Color color) {
     DrawRectangleRounded(button_rec, STDBUTTONCURVE, 10, color);
 
     //button text drawing
-    draw_centralized_text(button);
-
-    //button highlight drawing
-    if (hovering) {
-        DrawRectangleRounded(button_rec, STDBUTTONCURVE, 20, BUTTONSHADOWCOLOR);
-    }
+    draw_centralized_text(button, text_scale);
 }
 
-void button_draw_texture(Button button) {
-
-    bool hovering = false;
-    Vector2 mouse_pointer = GetMousePosition();
+void button_draw_texture(Button button, float text_scale) {
 
     Rectangle button_rect = get_button_rect(button);
     Rectangle rect_source = {
@@ -89,16 +61,8 @@ void button_draw_texture(Button button) {
 
     Vector2 origin = {0,0};
 
-    if (CheckCollisionPointRec(mouse_pointer, button_rect) && button.clickable) {
-        hovering = true;
-    }
+    DrawTexturePro(button.texture, rect_source, button_rect, origin, 0.0f, button.filter);
 
-    if (hovering) {
-        DrawTexturePro(button.texture, rect_source, button_rect, origin, 0.0f, BUTTONSHADOWCOLOR);
-    } else {
-        DrawTexturePro(button.texture, rect_source, button_rect, origin, 0.0f, button.filter);
-    }
-
-    draw_centralized_text(button);
+    draw_centralized_text(button, text_scale);
 
 }

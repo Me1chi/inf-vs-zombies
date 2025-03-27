@@ -5,6 +5,7 @@
 #include "game.h"
 #include "buttons.h"
 #include <stdbool.h>
+#include <stdio.h>
 
 void draw_game_grid(char map[MAXMAPROWS][MAXMAPCOLLUMS], GameTextures textures, Plant* plants) {
 
@@ -27,7 +28,7 @@ void draw_game_grid(char map[MAXMAPROWS][MAXMAPCOLLUMS], GameTextures textures, 
         WHITE,
         "",
         BLACK,
-        true,
+        NULL,
     };
 
     Button plant_button = {
@@ -37,7 +38,7 @@ void draw_game_grid(char map[MAXMAPROWS][MAXMAPCOLLUMS], GameTextures textures, 
         WHITE,
         "",
         BLACK,
-        false,
+        NULL,
     };
 
     for (int i = 0; i < MAXMAPROWS; i++) {
@@ -50,7 +51,7 @@ void draw_game_grid(char map[MAXMAPROWS][MAXMAPCOLLUMS], GameTextures textures, 
 
             tile.texture = textures.grass[div_mod_ij];
 
-            button_draw_texture(tile);
+            button_draw_texture(tile, TEXTTOBUTTONSIZE);
 
             switch (map[i][j]) {
                 case 'G':
@@ -72,7 +73,7 @@ void draw_game_grid(char map[MAXMAPROWS][MAXMAPCOLLUMS], GameTextures textures, 
                     plant_button.position.x = tile.position.x;
                     plant_button.position.y = tile.position.y;
 
-                    button_draw_texture(plant_button);
+                    button_draw_texture(plant_button, TEXTTOBUTTONSIZE);
 
                     plant_button.texture = textures.grass[div_mod_ij];
                     break;

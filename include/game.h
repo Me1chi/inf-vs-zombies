@@ -10,7 +10,7 @@
 #define MAXMAPCOLLUMS 9
 
 // Button related
-#define BUTTONLENGTHOVERFONT 4.0
+#define TEXTTOBUTTONSIZE 0.25
 #define THEGAMEBELOWTHAT SCREENHEIGHT/6.0
 #define STDBUTTONCURVE 0.3
 #define BUTTONLINETHICKNESSDIV 500.0
@@ -25,4 +25,6 @@
 // Plants related
 #define HOWMANYPLANTS 10
 #define MAXPROJECTILES 54
-#define PROJECTILESPEED 100
+#define PROJECTILESPEED 3.5 //100 Almost 4 Tiles per second. Given each tile is 24 pixels
+#define PROJROTATION 0.35
+#define PROJSCALING 1.2

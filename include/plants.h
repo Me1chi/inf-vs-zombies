@@ -11,3 +11,5 @@ void update_projectiles(ProjectileArray* projectiles);
 void draw_projectiles(ProjectileArray projectiles, GameTextures textures);
 
 void all_plants_shoot(Plant* plants, ProjectileArray* proj_arr);
+
+void plant_shoot(Plant plant, ProjectileArray* projectiles);

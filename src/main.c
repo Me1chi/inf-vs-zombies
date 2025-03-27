@@ -35,8 +35,11 @@ int main(void) {
 
     Texture2D peashooter_texture = LoadTexture("../resources/peashooter.png");
 
+    textures.pea_projectile = LoadTexture("../resources/peashooter-proj.png");
+
     textures.grass[0] = LoadTexture("../resources/grass.png");
     textures.grass[1] = LoadTexture("../resources/dirt.jpg");
+
 
 
     Vector2 peashooter_pos = {
@@ -49,7 +52,8 @@ int main(void) {
         peashooter_pos,
         10,
         50,
-        slow,
+        medium,
+        0,
         no_fire,
         peashooter_texture,
     };
@@ -68,7 +72,7 @@ int main(void) {
         WHITE,
         "",
         BLUE,
-        true
+        NULL
     };
 
     char map[MAXMAPROWS][MAXMAPCOLLUMS] = {
@@ -80,6 +84,7 @@ int main(void) {
     while(!WindowShouldClose()) {
         // Game update space
         all_plants_shoot(plants, &projectiles);
+
         update_projectiles(&projectiles);
 
         // Drawing space
@@ -90,6 +95,7 @@ int main(void) {
         draw_game_grid(map, textures, plants);
 
         draw_projectiles(projectiles, textures);
+
         EndDrawing();
 
     }
