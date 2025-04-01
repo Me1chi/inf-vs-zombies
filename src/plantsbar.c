@@ -16,14 +16,18 @@ void plant_button_draw(Button button, Plant plant, GameTextures textures) {
     Rectangle sun_rect = {0};
     Rectangle cost_rect = {0};
 
-    Vector2 mouse_pointer = GetMousePosition();
+    beneath_rect = button_rect;
 
-    bool hovering = false;
+    beneath_rect.y += (1.0 - BUTTONTEXTBOXSIZE)*button_rect.y;
+    beneath_rect.height = button_rect.height*BUTTONTEXTBOXSIZE;
 
+    sun_rect = beneath_rect;
 
+    sun_rect.width /= SUNBOXSIZE;
 
-
-
+    cost_rect = beneath_rect;
+    cost_rect.x += sun_rect.width;
+    cost_rect.width -= sun_rect.width;
 
 
 }

@@ -40,8 +40,6 @@ int main(void) {
     textures.grass[0] = LoadTexture("../resources/grass.png");
     textures.grass[1] = LoadTexture("../resources/dirt.jpg");
 
-
-
     Vector2 peashooter_pos = {
         1,
         3,

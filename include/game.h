@@ -17,6 +17,8 @@
 #define BUTTONSHADOWCOLOR (Color){90, 90, 90, 160}
 #define BIGBLANKSPACE 30.0
 #define SMALLBLANKSPACE 15.0
+#define BUTTONTEXTBOXSIZE 1/4.0 // The proportion of the text box to the button containing it
+#define SUNBOXSIZE 1/4.0 // The proportion of the sun box to the text button...
 
 // Textures related
 #define HOWMANYTEXTURES 10
@@ -25,6 +27,6 @@
 // Plants related
 #define HOWMANYPLANTS 10
 #define MAXPROJECTILES 54
-#define PROJECTILESPEED 3.5 //100 Almost 4 Tiles per second. Given each tile is 24 pixels
+#define PROJECTILESPEED 3.5
 #define PROJROTATION 0.35
 #define PROJSCALING 1.2

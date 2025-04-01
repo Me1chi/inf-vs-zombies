@@ -3,7 +3,6 @@
 #include "game.h"
 #include "raylib.h"
 #include "structs.h"
-#include <stdio.h>
 
 char plant_code(Plant plant) {
     return plant.name[0];
@@ -39,7 +38,7 @@ void plant_shoot(Plant plant, ProjectileArray* projectiles) {
 
 void all_plants_shoot(Plant* plants, ProjectileArray* proj_arr) {
     for (int i = 0; i < 1; i++) {
-        if (external_timer(plants[i].rate, &plants[i].time_accum) == 1) {
+        if (plants[i].rate != no_fire && external_timer(plants[i].rate, &plants[i].time_accum) == 1) {
             plant_shoot(plants[i], proj_arr);
         }
     }
