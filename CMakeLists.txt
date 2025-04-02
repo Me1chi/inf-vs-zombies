@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 4.0)
 project(inf-vs-zombies C)
 
 # Put the executable file in the bin folder
@@ -37,6 +37,7 @@ add_executable(inf-vs-zombies
     src/plantsbar.c
     src/table.c
     src/clock.c
+    src/textures.c
 )
 
 target_link_libraries(inf-vs-zombies PRIVATE raylib)

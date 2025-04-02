@@ -41,9 +41,9 @@ typedef struct {
     Vector2 position;
     Vector2 size;
     Texture2D texture;
-    Color filter;
     char text[50];
     Color text_color;
+    bool selected;
 
 } Button;
 

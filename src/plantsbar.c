@@ -16,6 +16,7 @@ void plant_button_draw(Button button, Plant plant, GameTextures textures) {
     Rectangle sun_rect = {0};
     Rectangle cost_rect = {0};
 
+    // Rectangles definition
     beneath_rect = button_rect;
 
     beneath_rect.y += (1.0 - BUTTONTEXTBOXSIZE)*button_rect.y;
@@ -29,5 +30,19 @@ void plant_button_draw(Button button, Plant plant, GameTextures textures) {
     cost_rect.x += sun_rect.width;
     cost_rect.width -= sun_rect.width;
 
+    // Drawing space
+
+
+    // TESTING IT IS NOT DONE YET!!!!!!!!!!!!!!!!!!!!
+    if(button.selected) {
+        DrawRectangleRec(beneath_rect, GREEN);
+        DrawRectangleRec(sun_rect, YELLOW);
+        DrawRectangleRec(cost_rect, PINK);
+    }
+    else {
+        DrawRectangleRec(beneath_rect, DARKGREEN);
+        DrawRectangleRec(sun_rect, ORANGE);
+        DrawRectangleRec(cost_rect, RED);
+    }
 
 }

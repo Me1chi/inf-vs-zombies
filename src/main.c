@@ -8,12 +8,17 @@
 #include "structs.h"
 #include "table.h"
 #include "clock.h"
+#include "plantsbar.h"
+#include "textures.h"
 
 int main(void) {
 
     InitWindow(SCREENWIDTH, SCREENHEIGHT, "INF vs Zombies");
 
     GameTextures textures = {0};
+
+    load_general_textures(&textures);
+
     Plant plants[HOWMANYPLANTS] = {0};
     Projectile base_proj = {
         (Vector2) {0, 0},
@@ -33,12 +38,7 @@ int main(void) {
         0,
     };
 
-    Texture2D peashooter_texture = LoadTexture("../resources/peashooter.png");
-
-    textures.pea_projectile = LoadTexture("../resources/peashooter-proj.png");
-
-    textures.grass[0] = LoadTexture("../resources/grass.png");
-    textures.grass[1] = LoadTexture("../resources/dirt.jpg");
+    Texture2D peashooter_texture = LoadTexture("../resources/textures/peashooter.png");
 
     Vector2 peashooter_pos = {
         1,
@@ -67,10 +67,9 @@ int main(void) {
         (Vector2) {SCREENWIDTH/2 - button_size.x/2, THEGAMEBELOWTHAT},
         button_size,
         textures.grass[1],
-        WHITE,
         "",
         BLUE,
-        NULL
+        true
     };
 
     char map[MAXMAPROWS][MAXMAPCOLLUMS] = {
@@ -93,6 +92,8 @@ int main(void) {
         draw_game_grid(map, textures, plants);
 
         draw_projectiles(projectiles, textures);
+
+        plant_button_draw(my_button, plants[0], textures);
 
         EndDrawing();
 

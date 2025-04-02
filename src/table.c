@@ -25,20 +25,18 @@ void draw_game_grid(char map[MAXMAPROWS][MAXMAPCOLLUMS], GameTextures textures, 
         starting_position,
         tile_size,
         textures.grass[div_mod_ij],
-        WHITE,
         "",
         BLACK,
-        NULL,
+        false,
     };
 
     Button plant_button = {
         starting_position,
         plant_size,
         textures.grass[div_mod_ij],
-        WHITE,
         "",
         BLACK,
-        NULL,
+        false,
     };
 
     for (int i = 0; i < MAXMAPROWS; i++) {
