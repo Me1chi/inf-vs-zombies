@@ -3,6 +3,7 @@
 #include "buttons.h"
 #include "plants.h"
 #include <stdbool.h>
+#include <stdio.h>
 #include "game.h"
 #include "structs.h"
 
@@ -11,38 +12,32 @@ char plant_button_logic();
 
 void plant_button_draw(Button button, Plant plant, GameTextures textures) {
 
-    Rectangle button_rect = get_button_rect(button);
-    Rectangle beneath_rect = {0};
-    Rectangle sun_rect = {0};
-    Rectangle cost_rect = {0};
+    // Complementary buttons definition
+    Button beneath_button = button;
+    Button sun_button = {0};
+    Button cost_button = {0};
 
-    // Rectangles definition
-    beneath_rect = button_rect;
+    beneath_button.position.y += (1.0 - BUTTONTEXTBOXSIZE)*button.size.y - SMALLBLANKSPACE/4.0;
+    beneath_button.size.y = button.size.y*BUTTONTEXTBOXSIZE;
 
-    beneath_rect.y += (1.0 - BUTTONTEXTBOXSIZE)*button_rect.y;
-    beneath_rect.height = button_rect.height*BUTTONTEXTBOXSIZE;
+    sun_button = beneath_button;
+    sun_button.size.x *= SUNBOXSIZE;
 
-    sun_rect = beneath_rect;
+    cost_button = beneath_button;
+    cost_button.position.x += sun_button.size.x;
+    cost_button.position.y -= SMALLBLANKSPACE/4.0;
+    cost_button.size.x -= sun_button.size.x;
+    cost_button.text_color = BLACK;
 
-    sun_rect.width /= SUNBOXSIZE;
+    sprintf(cost_button.text, "%d", plant.cost);
 
-    cost_rect = beneath_rect;
-    cost_rect.x += sun_rect.width;
-    cost_rect.width -= sun_rect.width;
+    // Textures attribution
+    sun_button.texture = textures.sun;
+    cost_button.texture = textures.button_text;
 
     // Drawing space
-
-
-    // TESTING IT IS NOT DONE YET!!!!!!!!!!!!!!!!!!!!
-    if(button.selected) {
-        DrawRectangleRec(beneath_rect, GREEN);
-        DrawRectangleRec(sun_rect, YELLOW);
-        DrawRectangleRec(cost_rect, PINK);
-    }
-    else {
-        DrawRectangleRec(beneath_rect, DARKGREEN);
-        DrawRectangleRec(sun_rect, ORANGE);
-        DrawRectangleRec(cost_rect, RED);
-    }
+    button_draw_texture(button, BUTTONTEXTBOXSIZE);
+    button_draw_texture(sun_button, BUTTONTEXTBOXSIZE);
+    button_draw_texture(cost_button, BUTTONTEXTBOXSIZE*3.5);
 
 }

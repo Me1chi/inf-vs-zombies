@@ -62,6 +62,7 @@ typedef struct {
 typedef struct {
     Texture2D logo;
     Texture2D button;
+    Texture2D button_text;
     Texture2D sun;
     Texture2D grass[2];
     Texture2D pea_projectile;

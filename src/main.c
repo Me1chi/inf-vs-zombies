@@ -1,5 +1,6 @@
 #include "plants.h"
 #include "raylib.h"
+#include <stdbool.h>
 #include <stdio.h>
 #include <time.h>
 #include "buttons.h"
@@ -66,10 +67,10 @@ int main(void) {
     Button my_button = {
         (Vector2) {SCREENWIDTH/2 - button_size.x/2, THEGAMEBELOWTHAT},
         button_size,
-        textures.grass[1],
+        textures.button,
         "",
         BLUE,
-        true
+        true,
     };
 
     char map[MAXMAPROWS][MAXMAPCOLLUMS] = {

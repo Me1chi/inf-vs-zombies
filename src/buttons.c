@@ -62,7 +62,7 @@ void button_draw_texture(Button button, float text_scale) {
     Vector2 origin = {0,0};
 
     if(button.selected)
-        DrawTexturePro(button.texture, rect_source, button_rect, origin, 0.0f, BUTTONSHADOWCOLOR);
+        DrawTexturePro(button.texture, rect_source, button_rect, origin, 0.0f, GRAY);
     else
         DrawTexturePro(button.texture, rect_source, button_rect, origin, 0.0f, WHITE);
 
