@@ -60,12 +60,12 @@ int main(void) {
     SetTargetFPS(60);
 
     Vector2 button_size = {
-        SCREENWIDTH/2,
-        SCREENHEIGHT/2,
+        SCREENWIDTH/8,
+        SCREENHEIGHT/6,
     };
 
     Button my_button = {
-        (Vector2) {SCREENWIDTH/2 - button_size.x/2, THEGAMEBELOWTHAT},
+        (Vector2) {SCREENWIDTH/4 - button_size.x/2, THEGAMEBELOWTHAT - button_size.y/1.5},
         button_size,
         textures.button,
         "",

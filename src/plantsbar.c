@@ -25,11 +25,28 @@ void plant_button_draw(Button button, Plant plant, GameTextures textures) {
 
     cost_button = beneath_button;
     cost_button.position.x += sun_button.size.x;
-    cost_button.position.y -= SMALLBLANKSPACE/4.0;
     cost_button.size.x -= sun_button.size.x;
     cost_button.text_color = BLACK;
 
     sprintf(cost_button.text, "%d", plant.cost);
+
+    // Plant positioning
+
+    Rectangle plant_rect = {
+        button.position.x,
+        button.position.y,
+        button.size.x*BUTTONINNERSPACESCALE,
+        button.size.y*(1-BUTTONTEXTBOXSIZE),
+    };
+
+    Vector2 origin = {0, 0};
+
+    Rectangle rect_source = {
+            0.0f,
+            0.0f,
+            plant.texture.width,
+            plant.texture.height,
+        };
 
     // Textures attribution
     sun_button.texture = textures.sun;
@@ -40,4 +57,8 @@ void plant_button_draw(Button button, Plant plant, GameTextures textures) {
     button_draw_texture(sun_button, BUTTONTEXTBOXSIZE);
     button_draw_texture(cost_button, BUTTONTEXTBOXSIZE*3.5);
 
+    if (button.selected)
+        DrawTexturePro(plant.texture, rect_source, plant_rect, origin, 0.0, GRAY);
+    else
+        DrawTexturePro(plant.texture, rect_source, plant_rect, origin, 0.0, WHITE);
 }
