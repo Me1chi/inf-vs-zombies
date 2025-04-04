@@ -41,6 +41,8 @@ int main(void) {
 
     Texture2D peashooter_texture = LoadTexture("../resources/textures/peashooter.png");
 
+    Texture sunflower_texture = LoadTexture("../resources/textures/sunflower.png");
+
     Vector2 peashooter_pos = {
         1,
         3,
@@ -55,6 +57,17 @@ int main(void) {
         0,
         no_fire,
         peashooter_texture,
+    };
+
+    plants[1] = (Plant) {
+        "Sunflower",
+        peashooter_pos,
+        10,
+        50,
+        slow,
+        0,
+        no_fire,
+        sunflower_texture,
     };
 
     SetTargetFPS(60);
@@ -73,10 +86,28 @@ int main(void) {
         true,
     };
 
+    Button sunflower_button = {
+        (Vector2) {SCREENWIDTH/4 + button_size.x/2 + SMALLBLANKSPACE, THEGAMEBELOWTHAT - button_size.y/1.5},
+        button_size,
+        textures.button,
+        "",
+        BLUE,
+        true,
+    };
+
+    Button sun_button = {
+        (Vector2) {SCREENWIDTH/4 - 3*button_size.x/2, THEGAMEBELOWTHAT - button_size.y/1.5},
+        button_size,
+        textures.sun,
+        "1000",
+        BLACK,
+        false,
+    };
+
     char map[MAXMAPROWS][MAXMAPCOLLUMS] = {
-        {'P', 'G', 'G', 'G'},
+        {'P', 'S', 'G', 'G'},
         {'P', 'P', 'T', 'G'},
-        {'G', 'T', 'P', 'G'},
+        {'S', 'T', 'P', 'G'},
     };
 
     while(!WindowShouldClose()) {
@@ -95,6 +126,9 @@ int main(void) {
         draw_projectiles(projectiles, textures);
 
         plant_button_draw(my_button, plants[0], textures);
+        plant_button_draw(sunflower_button, plants[1], textures);
+
+        sun_stack_draw(sun_button);
 
         EndDrawing();
 

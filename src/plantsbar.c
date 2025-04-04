@@ -62,3 +62,9 @@ void plant_button_draw(Button button, Plant plant, GameTextures textures) {
     else
         DrawTexturePro(plant.texture, rect_source, plant_rect, origin, 0.0, WHITE);
 }
+
+void sun_stack_draw(Button button) {
+
+    button_draw_texture(button, 0.35);
+
+}
