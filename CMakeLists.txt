@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.0)
+cmake_minimum_required(VERSION 3.7)
 project(inf-vs-zombies C)
 
 # Put the executable file in the bin folder
