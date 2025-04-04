@@ -10,8 +10,8 @@ cd build
 cmake ..
 make
 
-cd ..
-./bin/inf-vs-zombies
+cd ../bin
+./inf-vs-zombies
 ```
 
 # A little overview:

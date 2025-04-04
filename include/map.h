@@ -3,4 +3,4 @@
 #include "plants.h"
 #include "game.h"
 
-void insert_plant(Plant plant, char map[MAXMAPROWS][MAXMAPCOLLUMS]);
+void insert_plant(Plant plant, int row, int collum, char map[MAXMAPROWS][MAXMAPCOLLUMS]);

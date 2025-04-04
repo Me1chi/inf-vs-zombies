@@ -17,12 +17,12 @@ int main(void) {
     InitWindow(SCREENWIDTH, SCREENHEIGHT, "INF vs Zombies");
 
     GameTextures textures = {0};
-
     load_general_textures(&textures);
 
     Plant plants[HOWMANYPLANTS] = {0};
+
     Projectile base_proj = {
-        (Vector2) {0, 0},
+        (Vector2) {-SCREENWIDTH, -SCREENHEIGHT},
         1,
         no,
         WHITE,
@@ -30,27 +30,21 @@ int main(void) {
 
     Projectile proj_arr[MAXPROJECTILES];
 
-    for (int i = 0; i < MAXPROJECTILES; i++) {
-        proj_arr[i] = base_proj;
-    }
-
     ProjectileArray projectiles = {
         proj_arr,
         0,
     };
 
+    for (int i = 0; i < MAXPROJECTILES; i++) {
+        projectiles.array[i] = base_proj;
+    }
+
     Texture2D peashooter_texture = LoadTexture("../resources/textures/peashooter.png");
 
     Texture sunflower_texture = LoadTexture("../resources/textures/sunflower.png");
 
-    Vector2 peashooter_pos = {
-        1,
-        3,
-    };
-
     plants[0] = (Plant) {
         "Peashooter",
-        peashooter_pos,
         10,
         50,
         medium,
@@ -61,7 +55,6 @@ int main(void) {
 
     plants[1] = (Plant) {
         "Sunflower",
-        peashooter_pos,
         10,
         50,
         slow,
@@ -113,7 +106,6 @@ int main(void) {
     while(!WindowShouldClose()) {
         // Game update space
         all_plants_shoot(plants, &projectiles);
-
         update_projectiles(&projectiles);
 
         // Drawing space
@@ -122,7 +114,6 @@ int main(void) {
         ClearBackground(DARKGRAY);
 
         draw_game_grid(map, textures, plants);
-
         draw_projectiles(projectiles, textures);
 
         plant_button_draw(my_button, plants[0], textures);

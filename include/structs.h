@@ -27,7 +27,6 @@ typedef enum {
 typedef struct {
 
     char name[50]; //Each plant will have a char associated. It's first letter. So it needs to be well chosen
-    Vector2 position;
     int life_points;
     int cost;
     FireLoadDelay rate;
