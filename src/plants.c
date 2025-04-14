@@ -1,6 +1,7 @@
 #include "plants.h"
 #include "clock.h"
 #include "game.h"
+#include "map.h"
 #include "raylib.h"
 #include "structs.h"
 
@@ -16,7 +17,6 @@ int parse_plant(char code, Plant* array, Plant* plant) {
         }
     }
     return -1;
-
 }
 
 void plant_shoot(Plant plant, ProjectileArray* projectiles) {

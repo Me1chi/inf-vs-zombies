@@ -1,4 +1,6 @@
 #pragma once
+#include "game.h"
+#include "map.h"
 #include "raylib.h"
 #include <structs.h>
 

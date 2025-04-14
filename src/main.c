@@ -2,6 +2,7 @@
 #include "raylib.h"
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include <time.h>
 #include "buttons.h"
 #include "game.h"
@@ -15,6 +16,8 @@
 int main(void) {
 
     InitWindow(SCREENWIDTH, SCREENHEIGHT, "INF vs Zombies");
+
+    SmartMap smart_map = {0};
 
     GameTextures textures = {0};
     load_general_textures(&textures);
@@ -98,22 +101,29 @@ int main(void) {
     };
 
     char map[MAXMAPROWS][MAXMAPCOLLUMS] = {
-        {'P', 'S', 'G', 'G'},
+        {'G', 'S', 'G', 'G'},
         {'P', 'P', 'T', 'G'},
         {'S', 'T', 'P', 'G'},
     };
+
+    memcpy(smart_map.map, map, sizeof(map));
 
     while(!WindowShouldClose()) {
         // Game update space
         all_plants_shoot(plants, &projectiles);
         update_projectiles(&projectiles);
 
+        if (IsKeyPressed('P'))
+            insert_plant(plants[0], time(NULL)%MAXMAPROWS, time(NULL)%MAXMAPCOLLUMS, smart_map.map);
+        else if (IsKeyPressed('S'))
+            insert_plant(plants[1], time(NULL)%MAXMAPROWS, time(NULL)%MAXMAPCOLLUMS, smart_map.map);
+
         // Drawing space
         BeginDrawing();
 
         ClearBackground(DARKGRAY);
 
-        draw_game_grid(map, textures, plants);
+        draw_game_grid(smart_map, textures, plants);
         draw_projectiles(projectiles, textures);
 
         plant_button_draw(my_button, plants[0], textures);

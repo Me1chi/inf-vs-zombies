@@ -7,7 +7,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-void draw_game_grid(char map[MAXMAPROWS][MAXMAPCOLLUMS], GameTextures textures, Plant* plants) {
+void draw_game_grid(SmartMap smart_map, GameTextures textures, Plant* plants) {
 
     char plant_code = '\0';
     int div_mod_ij = 0;
@@ -51,7 +51,7 @@ void draw_game_grid(char map[MAXMAPROWS][MAXMAPCOLLUMS], GameTextures textures, 
 
             button_draw_texture(tile, TEXTTOBUTTONSIZE);
 
-            switch (map[i][j]) {
+            switch (smart_map.map[i][j]) {
                 case 'G':
 
 
@@ -64,7 +64,7 @@ void draw_game_grid(char map[MAXMAPROWS][MAXMAPCOLLUMS], GameTextures textures, 
                     break;
 
                 default:
-                    if (parse_plant(map[i][j], plants, &plant_to_draw) == 1) {
+                    if (parse_plant(smart_map.map[i][j], plants, &plant_to_draw) == 1) {
                         plant_button.texture = plant_to_draw.texture;
                     }
 
