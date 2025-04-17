@@ -21,6 +21,8 @@ void draw_game_grid(SmartMap smart_map, GameTextures textures, Plant* plants) {
     Vector2 tile_size = {3*PLANTSPRITESIZE, 3*PLANTSPRITESIZE};
     Vector2 plant_size = tile_size;
 
+    float line_thickness = 2*SCREENWIDTH/BUTTONLINETHICKNESSDIV;
+
     Button tile = {
         starting_position,
         tile_size,
@@ -41,6 +43,12 @@ void draw_game_grid(SmartMap smart_map, GameTextures textures, Plant* plants) {
 
     for (int i = 0; i < MAXMAPROWS; i++) {
         for (int j = 0; j < MAXMAPCOLLUMS; j++) {
+
+            bool draw_box = false;
+
+            if (smart_map.selected_row == i && smart_map.selected_col == j) {
+                draw_box = true;
+            }
 
             div_mod_ij = (i + j)%2;
 
@@ -77,6 +85,9 @@ void draw_game_grid(SmartMap smart_map, GameTextures textures, Plant* plants) {
                     break;
             }
 
+            if (draw_box) {
+                DrawRectangleLinesEx(get_button_rect(tile), line_thickness, BLACK);
+            }
 
         }
     }

@@ -4,4 +4,4 @@
 #include "game.h"
 #include "structs.h"
 
-int insert_plant(Plant plant, int row, int collum, char map[MAXMAPROWS][MAXMAPCOLLUMS]);
+int insert_plant(Plant plant, SmartMap *smart_map);

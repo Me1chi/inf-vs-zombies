@@ -3,13 +3,18 @@
 #include "map.h"
 
 
-int insert_plant(Plant plant, int row, int collum, char map[MAXMAPROWS][MAXMAPCOLLUMS]) {
+int insert_plant(Plant plant, SmartMap *smart_map) {
     int success = 0;
+    int row = 0;
+    int col = 0;
 
-    if (row >= MAXMAPROWS || collum >= MAXMAPCOLLUMS || row < 0 || collum < 0) {
+    row = smart_map->selected_row;
+    col = smart_map->selected_col;
+
+    if (row >= MAXMAPROWS || col >= MAXMAPCOLLUMS || row < 0 || col < 0) {
         success = -1;
     } else {
-        map[row][collum] = plant_code(plant);
+        smart_map->map[row][col] = plant_code(plant);
         success = 1;
     }
 

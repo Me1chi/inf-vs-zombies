@@ -1,6 +1,7 @@
 #include "buttons.h"
 #include "raylib.h"
 #include "game.h"
+#include "structs.h"
 
 Rectangle get_button_rect(Button button) {
     return (Rectangle) {
@@ -67,5 +68,24 @@ void button_draw_texture(Button button, float text_scale) {
         DrawTexturePro(button.texture, rect_source, button_rect, origin, 0.0f, WHITE);
 
     draw_centralized_text(button, text_scale);
+
+}
+
+void navigate_arrow_map(SmartMap* smart_map, int map_length, int map_heigth) {
+    if (IsKeyPressed(KEY_LEFT) && smart_map->selected_col > 0) {
+        smart_map->selected_col--;
+
+    } else if (IsKeyPressed(KEY_RIGHT) && smart_map->selected_col < map_length - 1) {
+        smart_map->selected_col++;
+
+    }
+
+    if (IsKeyPressed(KEY_UP) && smart_map->selected_row > 0) {
+        smart_map->selected_row--;
+
+    } else if (IsKeyPressed(KEY_DOWN) && smart_map->selected_row < map_heigth - 1) {
+        smart_map->selected_row++;
+
+    }
 
 }

@@ -1,5 +1,6 @@
 #include "plants.h"
 #include "raylib.h"
+#include <complex.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
@@ -113,10 +114,12 @@ int main(void) {
         all_plants_shoot(plants, &projectiles);
         update_projectiles(&projectiles);
 
+        navigate_arrow_map(&smart_map, MAXMAPCOLLUMS, MAXMAPROWS);
+
         if (IsKeyPressed('P'))
-            insert_plant(plants[0], time(NULL)%MAXMAPROWS, time(NULL)%MAXMAPCOLLUMS, smart_map.map);
+            insert_plant(plants[0], &smart_map);
         else if (IsKeyPressed('S'))
-            insert_plant(plants[1], time(NULL)%MAXMAPROWS, time(NULL)%MAXMAPCOLLUMS, smart_map.map);
+            insert_plant(plants[1], &smart_map);
 
         // Drawing space
         BeginDrawing();
