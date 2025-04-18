@@ -18,12 +18,13 @@ int main(void) {
 
     InitWindow(SCREENWIDTH, SCREENHEIGHT, "INF vs Zombies");
 
-    SmartMap smart_map = {0};
+    SmartMap smart_map = initialize_smart_map(MAXMAPROWS, MAXMAPCOLLUMS);
 
     GameTextures textures = {0};
-    load_general_textures(&textures);
+    PlantManager plant_manager = {0};
 
-    Plant plants[HOWMANYPLANTS] = {0};
+    plant_manager_mapping(&plant_manager);
+    load_general_textures(&textures);
 
     Projectile base_proj = {
         (Vector2) {-SCREENWIDTH, -SCREENHEIGHT},
@@ -42,30 +43,6 @@ int main(void) {
     for (int i = 0; i < MAXPROJECTILES; i++) {
         projectiles.array[i] = base_proj;
     }
-
-    Texture2D peashooter_texture = LoadTexture("../resources/textures/peashooter.png");
-
-    Texture sunflower_texture = LoadTexture("../resources/textures/sunflower.png");
-
-    plants[0] = (Plant) {
-        "Peashooter",
-        10,
-        50,
-        medium,
-        0,
-        no_fire,
-        peashooter_texture,
-    };
-
-    plants[1] = (Plant) {
-        "Sunflower",
-        10,
-        50,
-        slow,
-        0,
-        no_fire,
-        sunflower_texture,
-    };
 
     SetTargetFPS(60);
 
@@ -101,36 +78,28 @@ int main(void) {
         false,
     };
 
-    char map[MAXMAPROWS][MAXMAPCOLLUMS] = {
-        {'G', 'S', 'G', 'G'},
-        {'P', 'P', 'T', 'G'},
-        {'S', 'T', 'P', 'G'},
-    };
-
-    memcpy(smart_map.map, map, sizeof(map));
-
     while(!WindowShouldClose()) {
         // Game update space
-        all_plants_shoot(plants, &projectiles);
+        all_plants_shoot(plant_manager.plants, &projectiles);
         update_projectiles(&projectiles);
 
         navigate_arrow_map(&smart_map, MAXMAPCOLLUMS, MAXMAPROWS);
 
         if (IsKeyPressed('P'))
-            insert_plant(plants[0], &smart_map);
+            insert_plant(plant_manager.plants[0], &smart_map);
         else if (IsKeyPressed('S'))
-            insert_plant(plants[1], &smart_map);
+            insert_plant(plant_manager.plants[1], &smart_map);
 
         // Drawing space
         BeginDrawing();
 
         ClearBackground(DARKGRAY);
 
-        draw_game_grid(smart_map, textures, plants);
+        draw_game_grid(smart_map, textures, plant_manager.plants);
         draw_projectiles(projectiles, textures);
 
-        plant_button_draw(my_button, plants[0], textures);
-        plant_button_draw(sunflower_button, plants[1], textures);
+        plant_button_draw(my_button, plant_manager.plants[0], textures);
+        plant_button_draw(sunflower_button, plant_manager.plants[1], textures);
 
         sun_stack_draw(sun_button);
 

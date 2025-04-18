@@ -4,6 +4,7 @@
 #include "map.h"
 #include "raylib.h"
 #include "structs.h"
+#include <time.h>
 
 char plant_code(Plant plant) {
     return plant.name[0];
@@ -65,5 +66,43 @@ void draw_projectiles(ProjectileArray projectiles, GameTextures textures) {
     }
 
     rotation += PROJROTATION;
+
+}
+
+void plants_array_mapping(Plant *plants) {
+
+    plants[0] = (Plant) {
+        "Peashooter",
+        10,
+        50,
+        medium,
+        0,
+        no_fire,
+    };
+
+    plants[1] = (Plant) {
+        "Sunflower",
+        10,
+        50,
+        slow,
+        0,
+        no_fire,
+    };
+
+}
+
+void plants_textures_mapping(PlantManager *plant_manager) {
+
+    plant_manager->plants[0].texture = LoadTexture("../resources/textures/peashooter.png");
+
+    plant_manager->plants[1].texture = LoadTexture("../resources/textures/sunflower.png");
+
+}
+
+void plant_manager_mapping(PlantManager *plant_manager) {
+
+    plants_array_mapping(plant_manager->plants);
+
+    plants_textures_mapping(plant_manager);
 
 }

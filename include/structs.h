@@ -47,13 +47,12 @@ typedef struct {
 } Button;
 
 typedef struct {
-    Texture2D textures[HOWMANYTEXTURES];
-    int counter;
+    Plant plants[HOWMANYPLANTS]; // These two arrays must be the same size!!!!!
 
-} PlantTextures;
+} PlantManager;
 
 typedef struct {
-    Texture2D textures[HOWMANYTEXTURES];
+    Texture2D textures[HOWMANYZOMBIES];
     int counter;
 
 } ZombieTextures;

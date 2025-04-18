@@ -22,11 +22,11 @@
 #define SUNBOXSIZE 1/4.0 // The proportion of the sun box to the text button...
 
 // Textures related
-#define HOWMANYTEXTURES 10
+#define HOWMANYZOMBIES 10
 #define PLANTSPRITESIZE 24
 
 // Plants related
-#define HOWMANYPLANTS 10
+#define HOWMANYPLANTS 2
 #define MAXPROJECTILES 54
 #define PROJECTILESPEED 3.5
 #define PROJROTATION 1.5
