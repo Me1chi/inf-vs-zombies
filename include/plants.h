@@ -12,8 +12,6 @@ void update_projectiles(ProjectileArray* projectiles);
 
 void draw_projectiles(ProjectileArray projectiles, GameTextures textures);
 
-void all_plants_shoot(Plant* plants, ProjectileArray* proj_arr);
-
-void plant_shoot(Plant plant, ProjectileArray* projectiles);
+void all_plants_shoot(Plant* plants, ProjectileArray* proj_arr, SmartMap *smart_map);
 
 void plant_manager_mapping(PlantManager *plant_manager);

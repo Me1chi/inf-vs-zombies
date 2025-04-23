@@ -85,6 +85,7 @@ typedef struct {
 
 typedef struct {
     char map[MAXMAPROWS][MAXMAPCOLLUMS];
+    float timer[MAXMAPROWS][MAXMAPCOLLUMS];
     Plant selected_plant;
     int selected_row;
     int selected_col;

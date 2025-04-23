@@ -20,7 +20,7 @@ int parse_plant(char code, Plant* array, Plant* plant) {
     return -1;
 }
 
-void plant_shoot(Plant plant, ProjectileArray* projectiles) {
+void plant_shoot(Plant plant, int x, int y, ProjectileArray* projectiles) {
 
     Vector2 starting_position = {
         BIGBLANKSPACE,
@@ -28,16 +28,19 @@ void plant_shoot(Plant plant, ProjectileArray* projectiles) {
     };
 
     Vector2 tile_size = {3*PLANTSPRITESIZE, 3*PLANTSPRITESIZE};
-    Vector2 plant_size = tile_size;
 
     Projectile current_proj;
+
+    current_proj.position = starting_position;
+    current_proj.position.x += tile_size.x*(x + 1);
+    current_proj.position.y += tile_size.y*y + tile_size.y/3;
+
     int direction = 1;
 
     if (projectiles->counter >= MAXPROJECTILES)
         projectiles->counter = 0;
 
     //modify the projectile features
-    current_proj.position = (Vector2){SCREENWIDTH/3, SCREENHEIGHT/2};
     current_proj.direction = direction;
     current_proj.filter = WHITE;
 
@@ -46,10 +49,17 @@ void plant_shoot(Plant plant, ProjectileArray* projectiles) {
     projectiles->counter++;
 }
 
-void all_plants_shoot(Plant* plants, ProjectileArray* proj_arr) {
-    for (int i = 0; i < HOWMANYPLANTS; i++) {
-        if (plants[i].rate != no_fire && external_timer(plants[i].rate, &plants[i].time_accum) == 1) {
-            plant_shoot(plants[i], proj_arr);
+void all_plants_shoot(Plant* plants, ProjectileArray* proj_arr, SmartMap *smart_map) {
+    Plant plant_to_shoot = {0};
+
+    for (int i = 0; i < MAXMAPROWS; i++) {
+        for (int j = 0; j < MAXMAPCOLLUMS; j++) {
+            if (parse_plant(smart_map->map[i][j], plants, &plant_to_shoot) == 1) {
+                if (plant_to_shoot.rate != no_fire && external_timer(plant_to_shoot.rate, &smart_map->timer[i][j]) == 1) {
+                    plant_shoot(plant_to_shoot, j, i, proj_arr);
+                }
+            }
+        
         }
     }
 }

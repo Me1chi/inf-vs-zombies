@@ -10,12 +10,13 @@
 SmartMap initialize_smart_map(int size_x, int size_y) {
     SmartMap smart_map = {0};
 
-    smart_map.selected_row = -1;
-    smart_map.selected_col = -1;
+    smart_map.selected_row = 0;
+    smart_map.selected_col = 0;
 
     for (int i = 0; i < size_x; i++) {
         for (int j = 0; j < size_y; j++) {
             smart_map.map[i][j] = 'G';
+            smart_map.timer[i][j] = 0.0;
         }
     }
 

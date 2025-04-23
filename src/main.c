@@ -85,7 +85,7 @@ int main(void) {
 
     while(!WindowShouldClose()) {
         // Game update space
-        all_plants_shoot(plant_manager.plants, &projectiles);
+        all_plants_shoot(plant_manager.plants, &projectiles, &smart_map);
         update_projectiles(&projectiles);
 
         navigate_arrow_map(&smart_map, MAXMAPCOLLUMS, MAXMAPROWS);
