@@ -47,7 +47,8 @@ typedef struct {
 } Button;
 
 typedef struct {
-    Plant plants[HOWMANYPLANTS]; // These two arrays must be the same size!!!!!
+    Plant plants[HOWMANYPLANTS]; 
+    Button plants_bar[HOWMANYPLANTS];
 
 } PlantManager;
 

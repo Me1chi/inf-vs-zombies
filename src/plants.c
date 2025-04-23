@@ -21,6 +21,15 @@ int parse_plant(char code, Plant* array, Plant* plant) {
 }
 
 void plant_shoot(Plant plant, ProjectileArray* projectiles) {
+
+    Vector2 starting_position = {
+        BIGBLANKSPACE,
+        THEGAMEBELOWTHAT + BIGBLANKSPACE
+    };
+
+    Vector2 tile_size = {3*PLANTSPRITESIZE, 3*PLANTSPRITESIZE};
+    Vector2 plant_size = tile_size;
+
     Projectile current_proj;
     int direction = 1;
 
@@ -38,7 +47,7 @@ void plant_shoot(Plant plant, ProjectileArray* projectiles) {
 }
 
 void all_plants_shoot(Plant* plants, ProjectileArray* proj_arr) {
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < HOWMANYPLANTS; i++) {
         if (plants[i].rate != no_fire && external_timer(plants[i].rate, &plants[i].time_accum) == 1) {
             plant_shoot(plants[i], proj_arr);
         }

@@ -7,9 +7,6 @@
 #include "game.h"
 #include "structs.h"
 
-
-char plant_button_logic();
-
 void plant_button_draw(Button button, Plant plant, GameTextures textures) {
 
     // Complementary buttons definition
@@ -61,6 +58,31 @@ void plant_button_draw(Button button, Plant plant, GameTextures textures) {
         DrawTexturePro(plant.texture, rect_source, plant_rect, origin, 0.0, GRAY);
     else
         DrawTexturePro(plant.texture, rect_source, plant_rect, origin, 0.0, WHITE);
+}
+
+void plant_button_draw_manager(PlantManager plant_manager, GameTextures textures, int index) {
+    Button button = plant_manager.plants_bar[index];
+    Plant plant = plant_manager.plants[index];
+
+    plant_button_draw(button, plant, textures);
+
+}
+
+void select_plant_input(PlantManager *plant_manager) {
+    
+    KeyboardKey input = GetKeyPressed();
+    int index_to_select = -1;
+
+    if (input >= 49 && input <= 57) {
+        index_to_select = input - 49;
+    }
+    if (index_to_select != -1) { 
+        for (int i = 0; i < HOWMANYPLANTS; i++) {
+            plant_manager->plants_bar[i].selected = false;
+        }
+    }
+    plant_manager->plants_bar[index_to_select].selected = true;
+
 }
 
 void sun_stack_draw(Button button) {

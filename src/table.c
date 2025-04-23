@@ -97,9 +97,6 @@ void draw_game_grid(SmartMap smart_map, GameTextures textures, Plant* plants) {
             if (draw_box) {
                 DrawRectangleLinesEx(get_button_rect(tile), line_thickness, BLACK);
             }
-
-
-
         }
     }
 
