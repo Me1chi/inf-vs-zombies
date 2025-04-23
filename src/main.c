@@ -28,6 +28,8 @@ int main(void) {
     plant_manager_mapping(&plant_manager);
     load_general_textures(&textures);
 
+    Texture2D background = LoadTexture("../resources/textures/background.png");
+
     Projectile base_proj = {
         (Vector2) {-SCREENWIDTH, -SCREENHEIGHT},
         1,
@@ -90,7 +92,7 @@ int main(void) {
 
         navigate_arrow_map(&smart_map, MAXMAPCOLLUMS, MAXMAPROWS);
 
-        if (IsKeyPressed('P'))
+        if (IsKeyPressed(KEY_SPACE))
             insert_selected_plant(&plant_manager, &smart_map);
 
         select_plant_input(&plant_manager);
@@ -100,6 +102,33 @@ int main(void) {
 
         ClearBackground(DARKGRAY);
 
+//TESTING AREA ALERT TESTING THINGS HERE 
+
+    Rectangle source_back = {
+            0,
+            0,
+            background.width,
+            background.height,
+    };
+
+    Rectangle dest_back = {
+        0,
+        0,
+        SCREENWIDTH,
+        SCREENHEIGHT,
+    };
+
+    Vector2 origin_back = {
+            0,
+            0,
+    };
+
+    DrawTexturePro(background, source_back, dest_back, origin_back, 0.0, WHITE);
+
+
+
+
+//END OF THE TESTING AREA FROM NOW THE PROGRAM IS WORKING PROPERLY
         draw_game_grid(smart_map, textures, plant_manager.plants);
         draw_projectiles(projectiles, textures);
 
