@@ -1,9 +1,8 @@
-#include "game.h"
-#include "raylib.h"
-#include "plants.h"
-#include "structs.h"
 #include "map.h"
-
+#include "game.h"
+#include "plants.h"
+#include "raylib.h"
+#include "structs.h"
 
 int insert_plant(Plant plant, SmartMap *smart_map) {
     int success = 0;
@@ -36,7 +35,8 @@ int find_selected_plant(PlantManager plant_manager) {
     return selected_plant_index;
 }
 
-int insert_selected_plant(PlantManager *plant_manager, SmartMap *smart_map) {
+int insert_selected_plant(PlantManager *plant_manager, SmartMap *smart_map,
+                          int *sun_stack) {
     int index = 0;
     Plant selected_plant = {0};
 
@@ -51,6 +51,8 @@ int insert_selected_plant(PlantManager *plant_manager, SmartMap *smart_map) {
     insert_plant(selected_plant, smart_map);
 
     plant_manager->plants_bar[index].selected = false;
-    
+    plant_manager->plants[index].timer_accum = 0.0;
+    (*sun_stack) -= plant_manager->plants[index].cost;
+
     return 1;
 }

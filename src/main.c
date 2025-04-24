@@ -1,18 +1,15 @@
-#include "plants.h"
-#include "raylib.h"
-#include <complex.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
-#include <time.h>
 #include "buttons.h"
 #include "game.h"
 #include "map.h"
+#include "plants.h"
+#include "plantsbar.h"
+#include "raylib.h"
 #include "structs.h"
 #include "table.h"
-#include "clock.h"
-#include "plantsbar.h"
 #include "textures.h"
+#include <complex.h>
+#include <stdbool.h>
+#include <stdio.h>
 
 int main(void) {
 
@@ -31,7 +28,7 @@ int main(void) {
     Texture2D background = LoadTexture("../resources/textures/background.png");
 
     Projectile base_proj = {
-        (Vector2) {-SCREENWIDTH, -SCREENHEIGHT},
+        (Vector2){-SCREENWIDTH, -SCREENHEIGHT},
         1,
         no,
         WHITE,
@@ -51,30 +48,33 @@ int main(void) {
     SetTargetFPS(60);
 
     Vector2 button_size = {
-        SCREENWIDTH/8,
-        SCREENHEIGHT/6,
+        SCREENWIDTH / 8,
+        SCREENHEIGHT / 6,
     };
 
     Button my_button = {
-        (Vector2) {SCREENWIDTH/4 - button_size.x/2, THEGAMEBELOWTHAT - button_size.y/1.5},
+        (Vector2){SCREENWIDTH / 4 - button_size.x / 2,
+                  THEGAMEBELOWTHAT - button_size.y / 1.5},
         button_size,
         textures.button,
-        "1",
+        "",
         BLUE,
         false,
     };
 
     Button sunflower_button = {
-        (Vector2) {SCREENWIDTH/4 + button_size.x/2 + SMALLBLANKSPACE, THEGAMEBELOWTHAT - button_size.y/1.5},
+        (Vector2){SCREENWIDTH / 4 + button_size.x / 2 + SMALLBLANKSPACE,
+                  THEGAMEBELOWTHAT - button_size.y / 1.5},
         button_size,
         textures.button,
-        "2",
+        "",
         BLUE,
         false,
     };
 
     Button sun_button = {
-        (Vector2) {SCREENWIDTH/4 - 3*button_size.x/2, THEGAMEBELOWTHAT - button_size.y/1.5},
+        (Vector2){SCREENWIDTH / 4 - 3 * button_size.x / 2,
+                  THEGAMEBELOWTHAT - button_size.y / 1.5},
         button_size,
         textures.sun,
         "1000",
@@ -85,50 +85,50 @@ int main(void) {
     plant_manager.plants_bar[0] = my_button;
     plant_manager.plants_bar[1] = sunflower_button;
 
-    while(!WindowShouldClose()) {
+    while (!WindowShouldClose()) {
         // Game update space
         all_plants_shoot(plant_manager.plants, &projectiles, &smart_map);
-        update_projectiles(&projectiles);
+        update_plant_timer(&plant_manager);
+        update_projectiles(&projectiles, &sun_stack);
+        sprintf(sun_button.text, "%d", sun_stack);
 
         navigate_arrow_map(&smart_map, MAXMAPCOLLUMS, MAXMAPROWS);
 
         if (IsKeyPressed(KEY_SPACE))
-            insert_selected_plant(&plant_manager, &smart_map);
+            insert_selected_plant(&plant_manager, &smart_map, &sun_stack);
 
-        select_plant_input(&plant_manager);
+        select_plant_input(&plant_manager, sun_stack);
 
         // Drawing space
         BeginDrawing();
 
         ClearBackground(DARKGRAY);
 
-//TESTING AREA ALERT TESTING THINGS HERE 
+        // TESTING AREA ALERT TESTING THINGS HERE
 
-    Rectangle source_back = {
+        Rectangle source_back = {
             0,
             0,
             background.width,
             background.height,
-    };
+        };
 
-    Rectangle dest_back = {
-        0,
-        0,
-        SCREENWIDTH,
-        SCREENHEIGHT,
-    };
-
-    Vector2 origin_back = {
+        Rectangle dest_back = {
             0,
             0,
-    };
+            SCREENWIDTH,
+            SCREENHEIGHT,
+        };
 
-    DrawTexturePro(background, source_back, dest_back, origin_back, 0.0, WHITE);
+        Vector2 origin_back = {
+            0,
+            0,
+        };
 
+        DrawTexturePro(background, source_back, dest_back, origin_back, 0.0,
+                       WHITE);
 
-
-
-//END OF THE TESTING AREA FROM NOW THE PROGRAM IS WORKING PROPERLY
+        // END OF THE TESTING AREA FROM NOW THE PROGRAM IS WORKING PROPERLY
         draw_game_grid(smart_map, textures, plant_manager.plants);
         draw_projectiles(projectiles, textures);
 
@@ -138,7 +138,6 @@ int main(void) {
         sun_stack_draw(sun_button);
 
         EndDrawing();
-
     }
 
     CloseWindow();

@@ -6,12 +6,15 @@
 
 char plant_code(Plant plant);
 
-int parse_plant(char code, Plant* array, Plant* plant);
+int parse_plant(char code, Plant *array, Plant *plant);
 
-void update_projectiles(ProjectileArray* projectiles);
+void update_projectiles(ProjectileArray *projectiles, int *sun_stack);
 
 void draw_projectiles(ProjectileArray projectiles, GameTextures textures);
 
-void all_plants_shoot(Plant* plants, ProjectileArray* proj_arr, SmartMap *smart_map);
+void all_plants_shoot(Plant *plants, ProjectileArray *proj_arr,
+                      SmartMap *smart_map);
 
 void plant_manager_mapping(PlantManager *plant_manager);
+
+void update_plant_timer(PlantManager *plant_manager);

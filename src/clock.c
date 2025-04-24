@@ -3,6 +3,8 @@
 #include "raylib.h"
 #include "structs.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 int timer(int how_many_seconds) {
     static float timer_accum = 0;
@@ -38,7 +40,7 @@ int composed_timer(int seconds_to_run, int seconds_running) {
     return tick;
 }
 
-int external_timer(int how_many_seconds, float* ext_accum) {
+int external_timer(int how_many_seconds, float *ext_accum) {
     int tick = 0;
 
     if ((*ext_accum) >= how_many_seconds) {
@@ -49,4 +51,14 @@ int external_timer(int how_many_seconds, float* ext_accum) {
     }
 
     return tick;
+}
+
+int roll_a_dice(int sides) {
+    srand(time(NULL));
+
+    if (sides <= 0) {
+        return 1;
+    } else {
+        return rand() % sides + 1;
+    }
 }

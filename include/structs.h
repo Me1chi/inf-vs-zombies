@@ -1,7 +1,7 @@
 #pragma once
+#include "game.h"
 #include "raylib.h"
 #include <stdbool.h>
-#include "game.h"
 
 typedef enum {
     no,
@@ -26,13 +26,14 @@ typedef enum {
 
 typedef struct {
 
-    char name[50]; //Each plant will have a char associated. It's first letter. So it needs to be well chosen
+    char name[50]; // Each plant will have a char associated. It's first letter.
+                   // So it needs to be well chosen
     int life_points;
     int cost;
     FireLoadDelay rate;
-    float time_accum; // Stores the shooting time
     PlantDamageEffect effects;
     Texture2D texture;
+    float timer_accum;
 
 } Plant;
 
@@ -47,7 +48,7 @@ typedef struct {
 } Button;
 
 typedef struct {
-    Plant plants[HOWMANYPLANTS]; 
+    Plant plants[HOWMANYPLANTS];
     Button plants_bar[HOWMANYPLANTS];
 
 } PlantManager;
@@ -74,6 +75,7 @@ typedef struct {
     PlantDamageEffect effect;
     Color filter;
     float rotation;
+    char text[50];
 
 } Projectile;
 
