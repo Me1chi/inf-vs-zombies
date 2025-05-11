@@ -38,6 +38,7 @@ add_executable(inf-vs-zombies
     src/table.c
     src/clock.c
     src/textures.c
+    src/mainmenu.c
 )
 
 target_link_libraries(inf-vs-zombies PRIVATE raylib)

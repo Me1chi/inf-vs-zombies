@@ -67,6 +67,11 @@ typedef struct {
     Texture2D grass[2];
     Texture2D pea_projectile;
 
+    Texture2D menu_background;
+    Texture2D menu_play_button;
+    Texture2D menu_leaderboard_button;
+    Texture2D menu_exit_button;
+
 } GameTextures;
 
 typedef struct {

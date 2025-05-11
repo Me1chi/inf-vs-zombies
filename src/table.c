@@ -31,10 +31,10 @@ void draw_game_grid(SmartMap smart_map, GameTextures textures, Plant* plants) {
 
     Vector2 starting_position = {
         BIGBLANKSPACE,
-        THEGAMEBELOWTHAT + BIGBLANKSPACE
+        THEGAMEBELOWTHAT
     };
 
-    Vector2 tile_size = {3*PLANTSPRITESIZE, 3*PLANTSPRITESIZE};
+    Vector2 tile_size = {3*PLANTSPRITESIZE, 4*PLANTSPRITESIZE};
     Vector2 plant_size = tile_size;
 
     float line_thickness = 2*SCREENWIDTH/BUTTONLINETHICKNESSDIV;

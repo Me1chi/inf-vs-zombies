@@ -10,6 +10,7 @@
 #include <complex.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include "mainmenu.h"
 
 int main(void) {
 
@@ -17,10 +18,13 @@ int main(void) {
 
     int sun_stack = 50;
 
+    int screen_selector = 0;
+
     SmartMap smart_map = initialize_smart_map(MAXMAPROWS, MAXMAPCOLLUMS);
 
     GameTextures textures = {0};
     PlantManager plant_manager = {0};
+    Button menu_buttons[3] = {0};
 
     plant_manager_mapping(&plant_manager);
     load_general_textures(&textures);
@@ -85,7 +89,44 @@ int main(void) {
     plant_manager.plants_bar[0] = my_button;
     plant_manager.plants_bar[1] = sunflower_button;
 
-    while (!WindowShouldClose()) {
+    Vector2 main_menu_button_size = {SCREENWIDTH/2, SCREENHEIGHT/4};
+    Vector2 main_menu_button_pos = {
+        SCREENWIDTH/2 - main_menu_button_size.x/2,
+        SCREENHEIGHT/3 - main_menu_button_size.y/2,
+    };
+
+    menu_buttons[0] = (Button) {
+        main_menu_button_pos,
+        main_menu_button_size,
+        textures.menu_play_button,
+        "",
+        BLACK,
+        true,
+    };
+
+    main_menu_button_pos.y += main_menu_button_size.y;
+ 
+    menu_buttons[1] = (Button) {
+        main_menu_button_pos,
+        main_menu_button_size,
+        textures.menu_leaderboard_button,
+        "",
+        BLACK,
+        false,
+    };
+
+    main_menu_button_pos.y += main_menu_button_size.y;
+
+    menu_buttons[2] = (Button) {
+        main_menu_button_pos,
+        main_menu_button_size,
+        textures.menu_exit_button,
+        "",
+        BLACK,
+        false,
+    };
+
+    while (!WindowShouldClose() && screen_selector != 3) {
         // Game update space
         all_plants_shoot(plant_manager.plants, &projectiles, &smart_map);
         update_plant_timer(&plant_manager);
@@ -136,6 +177,8 @@ int main(void) {
         plant_button_draw_manager(plant_manager, textures, 1);
 
         sun_stack_draw(sun_button);
+
+        game_screen_manage(&screen_selector, textures, menu_buttons);
 
         EndDrawing();
     }
