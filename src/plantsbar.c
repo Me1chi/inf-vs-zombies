@@ -87,13 +87,14 @@ void select_plant_input(PlantManager *plant_manager, int sun_stack) {
         for (int i = 0; i < HOWMANYPLANTS; i++) {
             plant_manager->plants_bar[i].selected = false;
         }
-    }
-    if (plant_manager->plants[index_to_select].timer_accum >=
-            plant_manager->plants[index_to_select].rate &&
-        sun_stack >= plant_manager->plants[index_to_select].cost) {
 
-        plant_manager->plants_bar[index_to_select].selected = true;
-    }
+        if (plant_manager->plants[index_to_select].timer_accum >=
+                plant_manager->plants[index_to_select].rate &&
+            sun_stack >= plant_manager->plants[index_to_select].cost) {
+
+            plant_manager->plants_bar[index_to_select].selected = true;
+        }
+    } 
 }
 
 void sun_stack_draw(Button button) { button_draw_texture(button, 0.35); }

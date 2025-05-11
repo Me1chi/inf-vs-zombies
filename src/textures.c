@@ -31,5 +31,6 @@ void load_general_textures(GameTextures *textures) {
     textures->menu_play_button = load_texture_from_resources("play-button.png", textures);
     textures->menu_leaderboard_button = load_texture_from_resources("leaderboard-button.png", textures);
     textures->menu_exit_button = load_texture_from_resources("exit-button.png", textures);
+    textures->leaderboard = load_texture_from_resources("leaderboard.png", textures);
 
 }

@@ -21,6 +21,7 @@
 #define BUTTONTEXTBOXSIZE 1/4.0 // The proportion of the text box to the button containing it
 #define SUNBOXSIZE 1/4.0 // The proportion of the sun box to the text button...
 #define MENUBUTTONSCOUNT 3
+#define MAXTOPPLAYERS 5
 
 // Textures related
 #define HOWMANYZOMBIES 10

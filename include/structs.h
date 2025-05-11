@@ -71,6 +71,7 @@ typedef struct {
     Texture2D menu_play_button;
     Texture2D menu_leaderboard_button;
     Texture2D menu_exit_button;
+    Texture2D leaderboard;
 
 } GameTextures;
 
@@ -98,3 +99,8 @@ typedef struct {
     int selected_col;
 
 } SmartMap;
+
+typedef struct {
+    char text[10];
+    int score;
+} TopPlayer;
