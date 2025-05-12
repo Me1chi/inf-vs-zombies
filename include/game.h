@@ -1,5 +1,4 @@
 #pragma once
-#include "zombies.h"
 
 // Screen related
 #define SCREENWIDTH 800.0
@@ -24,7 +23,7 @@
 #define MAXTOPPLAYERS 5
 
 // Textures related
-#define HOWMANYZOMBIES 10
+#define HOWMANYZOMBIES 20
 #define PLANTSPRITESIZE 24
 
 // Plants related
@@ -33,3 +32,7 @@
 #define PROJECTILESPEED 3.5
 #define PROJROTATION 0.35
 #define PROJSCALING 1.2
+
+// Zombies related 
+#define ZOMBIEINITIALHP 200
+#define ZOMBIESPEED 1

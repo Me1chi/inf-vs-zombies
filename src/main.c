@@ -11,12 +11,14 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "mainmenu.h"
+#include "zombies.h"
 
 int main(void) {
 
     InitWindow(SCREENWIDTH, SCREENHEIGHT, "INF vs Zombies");
 
-    int sun_stack = 50;
+    int sun_stack = 100;
+    int total_zombies = 20;
 
     int screen_selector = 0;
 
@@ -25,6 +27,16 @@ int main(void) {
     GameTextures textures = {0};
     PlantManager plant_manager = {0};
     Button menu_buttons[3] = {0};
+    Zombie zombies[20] = {0};
+
+    for (int i = 0; i < 20; i++) {
+        zombies[i] = (Zombie){
+            0,
+            -10*SCREENHEIGHT,
+            10*SCREENWIDTH,
+            false,
+        };
+    }
 
     plant_manager_mapping(&plant_manager);
     load_general_textures(&textures);
@@ -140,6 +152,12 @@ int main(void) {
 
         select_plant_input(&plant_manager, sun_stack);
 
+        zombies_walk(total_zombies, zombies);
+
+        zombie_spawn(total_zombies, zombies);
+        zombies_bite(&smart_map, zombies, total_zombies);
+        zombies_damage_take(&projectiles, zombies, total_zombies);
+
         // Drawing space
         BeginDrawing();
 
@@ -172,6 +190,8 @@ int main(void) {
         // END OF THE TESTING AREA FROM NOW THE PROGRAM IS WORKING PROPERLY
         draw_game_grid(smart_map, textures, plant_manager.plants);
         draw_projectiles(projectiles, textures);
+        
+        zombies_draw(textures, zombies, total_zombies);
 
         plant_button_draw_manager(plant_manager, textures, 0);
         plant_button_draw_manager(plant_manager, textures, 1);

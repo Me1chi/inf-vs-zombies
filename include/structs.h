@@ -104,3 +104,11 @@ typedef struct {
     char text[10];
     int score;
 } TopPlayer;
+
+typedef struct {
+    int life_points;
+    int row;
+    float coord_x;
+
+    bool alive;
+} Zombie;

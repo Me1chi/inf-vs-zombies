@@ -2,7 +2,6 @@
 #include "buttons.h"
 #include "clock.h"
 #include "game.h"
-#include "map.h"
 #include "raylib.h"
 #include "structs.h"
 #include <stdio.h>
@@ -46,6 +45,7 @@ void plant_shoot(Plant plant, int x, int y, ProjectileArray *projectiles) {
 
     } else {
         direction = 1;
+        current_proj.effect = no;
     }
 
     // modify the projectile features

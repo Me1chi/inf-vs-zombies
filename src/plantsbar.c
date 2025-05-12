@@ -1,7 +1,6 @@
 #include "plantsbar.h"
 #include "buttons.h"
 #include "game.h"
-#include "plants.h"
 #include "raylib.h"
 #include "structs.h"
 #include <stdbool.h>
