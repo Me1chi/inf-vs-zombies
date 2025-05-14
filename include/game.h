@@ -35,4 +35,4 @@
 
 // Zombies related 
 #define ZOMBIEINITIALHP 200
-#define ZOMBIESPEED 1
+#define ZOMBIESPEED 0.5

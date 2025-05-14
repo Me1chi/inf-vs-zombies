@@ -24,9 +24,9 @@ void plant_shoot(Plant plant, int x, int y, ProjectileArray *projectiles) {
     int direction;
 
     Vector2 starting_position = {BIGBLANKSPACE,
-                                 THEGAMEBELOWTHAT + BIGBLANKSPACE};
+                                 THEGAMEBELOWTHAT};
 
-    Vector2 tile_size = {3 * PLANTSPRITESIZE, 3 * PLANTSPRITESIZE};
+    Vector2 tile_size = {3 * PLANTSPRITESIZE, 4 * PLANTSPRITESIZE};
 
     Projectile current_proj;
 

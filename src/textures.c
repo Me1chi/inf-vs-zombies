@@ -26,6 +26,7 @@ void load_general_textures(GameTextures *textures) {
     textures->grass[0] = load_texture_from_resources("grass.png", textures);
     textures->grass[1] = load_texture_from_resources("dirt.png", textures);
     textures->pea_projectile = load_texture_from_resources("peashooter-proj.png", textures);
+    textures->zombie = load_texture_from_resources("zombie.png", textures);
 
     textures->menu_background = load_texture_from_resources("menu-background.png", textures);
     textures->menu_play_button = load_texture_from_resources("play-button.png", textures);

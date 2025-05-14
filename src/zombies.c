@@ -33,8 +33,9 @@ void zombie_spawn(int total_zombies, Zombie *zombies) {
 
 void zombies_walk(int total_zombies, Zombie *zombies) {
     for (int i = 0; i < total_zombies; i++) {
-        if(zombies[i].alive)
-            zombies[i].coord_x -= ZOMBIESPEED;
+        if(zombies[i].alive) {
+            zombies[i].coord_x -= ZOMBIESPEED; 
+        } 
     }
 }
 
@@ -48,8 +49,8 @@ void zombies_bite(SmartMap *smart_map, Zombie *zombies, int total_zombies) {
     Vector2 tile_size = {3*PLANTSPRITESIZE, 4*PLANTSPRITESIZE};
 
     for (int i = 0; i < total_zombies; i++) {
-        if (zombies[i].alive && 
-            zombies[i].coord_x < starting_position.x + MAXMAPCOLLUMS * 3 * PLANTSPRITESIZE
+        if (zombies[i].alive
+        && zombies[i].coord_x < starting_position.x + MAXMAPCOLLUMS * 3 * PLANTSPRITESIZE
         && zombies[i].coord_x > SMALLBLANKSPACE) {
             smart_map->map[zombies[i].row][(int)(zombies[i].coord_x 
                 - starting_position.x)/3
@@ -91,7 +92,7 @@ void zombies_draw(GameTextures textures, Zombie *zombies, int total_zombies) {
         Button zombie_button = {
             (Vector2) {zombies[i].coord_x, THEGAMEBELOWTHAT + 4*PLANTSPRITESIZE*zombies[i].row},
             (Vector2) {3*PLANTSPRITESIZE, 4*PLANTSPRITESIZE},
-            textures.logo,
+            textures.zombie,
             "",
             BLACK,
             false,
