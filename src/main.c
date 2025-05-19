@@ -152,9 +152,9 @@ int main(void) {
 
         select_plant_input(&plant_manager, sun_stack);
 
-        zombies_walk(total_zombies, zombies);
-
+        screen_selector = zombies_walk(total_zombies, zombies, screen_selector);
         zombie_spawn(total_zombies, zombies);
+
         zombies_bite(&smart_map, zombies, total_zombies);
         zombies_damage_take(&projectiles, zombies, total_zombies);
 

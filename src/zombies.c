@@ -13,7 +13,7 @@ void zombie_spawn(int total_zombies, Zombie *zombies) {
 
     last_spawned_was += GetFrameTime();
 
-    if (zombies_spawned < total_zombies && last_spawned_was > 4) {
+    if (zombies_spawned < total_zombies && last_spawned_was > 12) {
         
         Zombie new_zombie = {
             ZOMBIEINITIALHP,
@@ -31,12 +31,18 @@ void zombie_spawn(int total_zombies, Zombie *zombies) {
     }
 }
 
-void zombies_walk(int total_zombies, Zombie *zombies) {
-    for (int i = 0; i < total_zombies; i++) {
-        if(zombies[i].alive) {
-            zombies[i].coord_x -= ZOMBIESPEED; 
-        } 
+int zombies_walk(int total_zombies, Zombie *zombies, int current_screen) {
+    
+    if (current_screen == 1) {
+        for (int i = 0; i < total_zombies; i++) {
+            if(zombies[i].alive) {
+                zombies[i].coord_x -= ZOMBIESPEED; 
+            }
+        }
     }
+
+    return current_screen;
+    
 }
 
 void zombies_bite(SmartMap *smart_map, Zombie *zombies, int total_zombies) {
@@ -50,11 +56,9 @@ void zombies_bite(SmartMap *smart_map, Zombie *zombies, int total_zombies) {
 
     for (int i = 0; i < total_zombies; i++) {
         if (zombies[i].alive
-        && zombies[i].coord_x < starting_position.x + MAXMAPCOLLUMS * 3 * PLANTSPRITESIZE
+        && zombies[i].coord_x < starting_position.x + MAXMAPCOLLUMS * tile_size.x 
         && zombies[i].coord_x > SMALLBLANKSPACE) {
-            smart_map->map[zombies[i].row][(int)(zombies[i].coord_x 
-                - starting_position.x)/3
-            ] = 'G';
+                smart_map->map[zombies[i].row][(int)((zombies[i].coord_x - starting_position.x)/tile_size.x)] = 'G';
         }
     }
 }
